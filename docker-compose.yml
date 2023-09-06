@@ -1,0 +1,16 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: changedetection
+    image: lscr.io/linuxserver/changedetection.io:latest
+    environment:
+      - PUID=1000 # User ID for the process inside the container.
+      - PGID=1000  # Group ID for the process inside the container.
+      - TZ=Asia/Kuala Lumpur  # Timezone setting for the container.
+      # - BASE_URL= # Optional: If provided, it might be used to configure the base URL.
+    ports:
+      - 5000:5000
+    volumes:
+      - /data/changedetection/config:/config  # Mounts a host directory to a directory inside the container.
+    restart: unless-stopped
